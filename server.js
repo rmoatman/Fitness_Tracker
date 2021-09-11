@@ -1,33 +1,27 @@
-const express = require("express");
-const logger = require("morgan");
-const mongoose = require("mongoose");
+const express = require('express');
+const logger = require('morgan');
+const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 3000;
 
-// const db = require("./models");
-const Workout = require("./models/workout");
-
 const app = express();
 
-app.use(logger("dev"));
+app.use(logger('dev'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static('public'));
 
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/deep-thoughts',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-  }
-);
+require('./routes/apiroutes')(app);
+require('./routes/htmlroutes')(app);
 
-require("./routes/apiroutes")(app);
-require("./routes/htmlroutes")(app);
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
 
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
-});
+    console.log(`App running at https://localhost:${PORT}...`);
+  });
