@@ -3,7 +3,7 @@
 [<img src="https://img.shields.io/badge/license-MIT-brightgreen?link=https://opensource.org/licenses/MIT">](https://opensource.org/licenses/MIT)
 
 <img src="./assets/screenshot_of_homepage.png  " alt="Screenshot of Workout Tracker Home Page">
-<br>
+
 <img src="./assets/screenshot_of_dashboard.png  " alt="Screenshot of Workout Tracker Dashboard">
 <br><br>
 
