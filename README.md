@@ -7,6 +7,8 @@
 <img src="./assets/screenshot_of_dashboard.png  " alt="Screenshot of Workout Tracker Dashboard">
 <br><br>
 
+The workout tracker is deployed here:  https://aqueous-crag-67796.herokuapp.com/
+
 ## Description
 
 This app is a daily Workout Tracker powered by an Express server using a Mongo database with a Mongoose schema.  It allows the user to log multiple exercises in a workout on a given day.  It accumulates the data and displays the most recent workout statistics.  A user Dashboard provides statistics regarding workouts for the past 7 days.
