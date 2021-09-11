@@ -1,4 +1,4 @@
-const db = require("../models/workout");
+const db = require("../models/workout.js");
 
 module.exports = function(app) {
 
