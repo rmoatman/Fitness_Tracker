@@ -7,7 +7,7 @@
 <img src="./assets/screenshot_of_dashboard.png  " alt="Screenshot of Workout Tracker Dashboard">
 <br><br>
 
-The workout tracker is deployed here:  https://aqueous-crag-67796.herokuapp.com/
+The workout tracker is deployed here:  https://pure-shore-71824.herokuapp.com/
 
 ## Description
 
