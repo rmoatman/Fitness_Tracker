@@ -1,20 +1,31 @@
-const db = require("../models");
+const db = require("../models/workout");
 
 module.exports = function(app) {
 
-    app.get("/api/workouts", (req, res) => {
-        db.Workout.find({})
-            .then(dbWorkout => {
-                res.json(dbWorkout);
+    // finds all workouts if any
+    app.get('/api/workouts', (req, res) => {
+        db.aggregate([
+          {
+            $addFields: {
+              totalDuration: {
+                $sum: '$exercises.duration',
+              },
+              totalDistance: {
+                $sum: '$exercises.distance'
+              }
+            },
+          },
+        ]).then(dbWorkout => {
+            res.json(dbWorkout);
             })
-            .catch(err => {
-                res.status(400).json(err);
-            });
+          .catch(err => {
+            res.status(400).json(err);
+          });
     });
 
-    // enter new workout
+    // create new workout
     app.post("/api/workouts", (req, res) => {
-        db.Workout.create(req.body)
+        db.create({})
             .then((dbWorkout) => {
                 res.json(dbWorkout);
             }).catch(err => {
@@ -22,10 +33,12 @@ module.exports = function(app) {
             });
     });
 
-    app.put("/api/workouts/:id", (req, res) => {
-        db.Workout.findByIdAndUpdate(
-            { _id: req.params.id },
-            { exercises: req.body }
+    // add exercise to lastWorkout (new or existing)
+    app.put("/api/workouts/:id", ({body, params}, res) => {
+        db.findByIdAndUpdate(
+            params.id,
+            { $push: {exercises: body }},
+
         ).then((dbWorkout) => {
             res.json(dbWorkout);
         }).catch(err => {
@@ -33,6 +46,23 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/api/workouts/range", (req, res) => {
+        db.aggregate([
+            {
+                $addFields: {
+                    totalDuration: {
+                      $sum: '$exercises.duration',
+                    },
+                    totalDistance: {
+                      $sum: '$exercises.distance'
+                    }
+                },
+            }
+        ]).then((dbWorkout) => {
+          res.json(dbWorkout);
+        }).catch(err => {
+          res.status(400).json(err);
+        });
+    });
 
-    
 }

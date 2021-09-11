@@ -12,12 +12,10 @@ const workoutSeed = [
     day: new Date(new Date().setDate(new Date().getDate() - 9)),
     exercises: [
       {
-        type: 'resistance',
-        name: 'Bicep Curl',
+        type: 'cardio',
+        name: 'Running',
         duration: 20,
-        weight: 100,
-        reps: 10,
-        sets: 4,
+        distance: 4,
       },
     ],
   },
@@ -38,12 +36,10 @@ const workoutSeed = [
     day: new Date(new Date().setDate(new Date().getDate() - 7)),
     exercises: [
       {
-        type: 'resistance',
-        name: 'Push Press',
-        duration: 25,
-        weight: 185,
-        reps: 8,
-        sets: 4,
+        type: 'cardio',
+        name: 'Running',
+        duration: 18,
+        distance: 4,
       },
     ],
   },
@@ -123,6 +119,8 @@ const workoutSeed = [
       },
     ],
   },
+
+  
 ];
 
 db.Workout.deleteMany({})

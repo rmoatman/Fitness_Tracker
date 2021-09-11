@@ -1,5 +1,6 @@
 const API = {
   async getLastWorkout() {
+    console.log("getLastWorkout");
     let res;
     try {
       res = await fetch("/api/workouts");
@@ -9,11 +10,12 @@ const API = {
     const json = await res.json();
 
     return json[json.length - 1];
+
   },
 
   async addExercise(data) {
     const id = location.search.split("=")[1];
-    console.log(id);
+    console.log("add exercise");
 
     const res = await fetch("/api/workouts/" + id, {
       method: "PUT",
@@ -27,6 +29,7 @@ const API = {
   },
 
   async createWorkout(data = {}) {
+    console.log("add workout");
     const res = await fetch("/api/workouts", {
       method: "POST",
       body: JSON.stringify(data),
